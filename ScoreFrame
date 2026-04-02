@@ -1,0 +1,19 @@
+import javax.swing.*;
+import java.awt.*;
+
+// Final score screen
+public class ScoreFrame extends JFrame {
+
+    public ScoreFrame(String name, int score) {
+
+        setTitle("Final Score");
+        setSize(300, 200);
+        setLayout(new FlowLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Show final result
+        add(new JLabel(name + ", your score is: " + score + "/1"));
+
+        setVisible(true);
+    }
+}
