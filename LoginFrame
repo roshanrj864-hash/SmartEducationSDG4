@@ -1,0 +1,49 @@
+public class LoginFrame extends JFrame {
+
+    private JTextField nameField;   // Input field for user name
+    private JButton startButton;    // Button to start app
+
+    public LoginFrame() {
+
+        // Set window title
+        setTitle("Login Screen");
+
+        // Set window size
+        setSize(300, 200);
+
+        // Use simple flow layout
+        setLayout(new FlowLayout());
+
+        // Exit program when window is closed
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Label
+        add(new JLabel("Enter your name:"));
+
+        // Text field for name input
+        nameField = new JTextField(15);
+        add(nameField);
+
+        // Start button
+        startButton = new JButton("Start Learning");
+        add(startButton);
+
+        // Button click event
+        startButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                // Get user name from text field
+                String name = nameField.getText();
+
+                // Open subject screen
+                new SubjectsFrame(name);
+
+                // Close login window
+                dispose();
+            }
+        });
+
+        // Show window
+        setVisible(true);
+    }
+}
