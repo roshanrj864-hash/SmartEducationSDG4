@@ -1,0 +1,58 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+// Screen to choose subject
+public class SubjectsFrame extends JFrame {
+
+    private String userName;
+
+    public SubjectsFrame(String name) {
+
+        // Store user name
+        this.userName = name;
+
+        setTitle("Select Subject");
+        setSize(300, 250);
+        setLayout(new GridLayout(4, 1));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Title label
+        add(new JLabel("Choose a subject:", JLabel.CENTER));
+
+        // Buttons for subjects
+        JButton mathBtn = new JButton("Math");
+        JButton englishBtn = new JButton("English");
+        JButton scienceBtn = new JButton("Science");
+
+        add(mathBtn);
+        add(englishBtn);
+        add(scienceBtn);
+
+        // Math button action
+        mathBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new LessonFrame(userName, "Math");
+                dispose();
+            }
+        });
+
+        // English button action
+        englishBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new LessonFrame(userName, "English");
+                dispose();
+            }
+        });
+
+        // Science button action
+        scienceBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new LessonFrame(userName, "Science");
+                dispose();
+            }
+        });
+
+        setVisible(true);
+    }
+}
