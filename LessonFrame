@@ -1,0 +1,66 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+// Lesson screen - shows learning content
+public class LessonFrame extends JFrame {
+
+    public LessonFrame(String name, String subject) {
+
+        setTitle("Lesson Screen");
+        setSize(350, 250);
+        setLayout(new BorderLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Text area for lesson content
+        JTextArea lessonArea = new JTextArea();
+        lessonArea.setEditable(false);
+
+        // Load lesson based on subject
+        if (subject.equals("Math")) {
+
+            lessonArea.setText(
+                    "Math Lesson:\n\n" +
+                    "Fractions:\n" +
+                    "1/4 means one part out of four equal parts."
+            );
+
+        } else if (subject.equals("English")) {
+
+            lessonArea.setText(
+                    "English Lesson:\n\n" +
+                    "Dog = Animal\n" +
+                    "Cat = Pet"
+            );
+
+        } else {
+
+            lessonArea.setText(
+                    "Science Lesson:\n\n" +
+                    "Water boils at 100°C\n" +
+                    "Earth orbits the Sun"
+            );
+        }
+
+        // Add scrollable lesson area
+        add(new JScrollPane(lessonArea), BorderLayout.CENTER);
+
+        // Button to start quiz
+        JButton nextBtn = new JButton("Start Quiz");
+        add(nextBtn, BorderLayout.SOUTH);
+
+        // Button action
+        nextBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                // Open quiz screen
+                new QuizFrame(name, subject);
+
+                // Close lesson screen
+                dispose();
+            }
+        });
+
+        setVisible(true);
+    }
+}
