@@ -1,0 +1,93 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+// Quiz screen - shows questions
+public class QuizFrame extends JFrame {
+
+    private int score = 0;
+
+    public QuizFrame(String name, String subject) {
+
+        setTitle("Quiz Screen");
+        setSize(350, 300);
+        setLayout(new GridLayout(5, 1));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Question label
+        JLabel questionLabel = new JLabel();
+
+        // Options
+        JRadioButton option1 = new JRadioButton();
+        JRadioButton option2 = new JRadioButton();
+        JRadioButton option3 = new JRadioButton();
+
+        // Group radio buttons (only one can be selected)
+        ButtonGroup group = new ButtonGroup();
+        group.add(option1);
+        group.add(option2);
+        group.add(option3);
+
+        // Correct answer index
+        int correct = 0;
+
+        // Load quiz based on subject
+        if (subject.equals("Math")) {
+
+            questionLabel.setText("What is 1/2 + 1/4?");
+            option1.setText("1/4");
+            option2.setText("2/4");
+            option3.setText("3/4");
+            correct = 3;
+
+        } else if (subject.equals("English")) {
+
+            questionLabel.setText("Which is a pet?");
+            option1.setText("Dog");
+            option2.setText("Car");
+            option3.setText("Chair");
+            correct = 1;
+
+        } else {
+
+            questionLabel.setText("Boiling point of water?");
+            option1.setText("50°C");
+            option2.setText("100°C");
+            option3.setText("200°C");
+            correct = 2;
+        }
+
+        // Add components
+        add(questionLabel);
+        add(option1);
+        add(option2);
+        add(option3);
+
+        JButton submitBtn = new JButton("Submit");
+        add(submitBtn);
+
+        final int correctAnswer = correct;
+
+        // Submit button logic
+        submitBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                // Check answer
+                if ((correctAnswer == 1 && option1.isSelected()) ||
+                    (correctAnswer == 2 && option2.isSelected()) ||
+                    (correctAnswer == 3 && option3.isSelected())) {
+
+                    score = 1; // correct answer
+                }
+
+                // Open score screen
+                new ScoreFrame(name, score);
+
+                // Close quiz screen
+                dispose();
+            }
+        });
+
+        setVisible(true);
+    }
+}
